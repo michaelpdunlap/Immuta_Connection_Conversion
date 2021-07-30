@@ -1,0 +1,2 @@
+SOURCE_CONNECTION,TARGET_CONNECTION,TARGET_HOST,TARGET_DB,TARGET_HTTP,TARGET_APIKEY
+<databricks source connection>,<databricks target connection>,<target host>,<databricks db>,<databricks http from cluster config>,<databricks api key>
