@@ -2,7 +2,7 @@
 Utility to convert Immuta data source connections under specific circumstances.
 
 ## Description
-This is a python script designed to swap Immuta databricks connections from Workspace A to Workspace N.  It is meant to be run via Databricks for ease of use in the JB Hunt environment but could be ported as needed.  The script functionality is driven by a .csv file that contains a source to target mapping tailored to your environment.
+This is a python script designed to swap Immuta databricks connections from Workspace A to Workspace N.  It is meant to be run via Databricks for ease of use in the customer environment but could be ported as needed.  The script functionality is driven by a .csv file that contains a source to target mapping tailored to your environment.
 
 ## Install
 1.) Download the latest .py files.  
