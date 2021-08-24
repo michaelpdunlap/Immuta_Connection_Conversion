@@ -96,7 +96,7 @@ for row in pandas_df.itertuples():
   
     # now, if you find the connection in the project description, update the description and documentation
     if i['description'] == None:
-      print (str(i['id']) + " not a schema project, bro.")
+      print (str(i['id']) + " not a schema project.")
     else:
       if SOURCE_CONNECTION in i['description']:
         #in here, call the project put and update the description and documentation
