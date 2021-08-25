@@ -120,7 +120,8 @@ for row in pandas_df.itertuples():
           IMMUTA_URL + '/dataSource?connectionString=' + SOURCE_CONNECTION,
           headers={'Authorization': authToken }  
         )
-  # print (dataSourceFetch.json())
+  # uncommenting here will pull payload from the connection call above
+  print (dataSourceFetch.json())
   
   # swell, now let's loop through the results
   # see, there's a pattern
@@ -152,6 +153,8 @@ for row in pandas_df.itertuples():
       }
     )
     print ("Achieved status " + str(updateDataSource.status_code) + " updating data source ID " + str(i['id']) + " from " + SOURCE_CONNECTION + " to " + TARGET_CONNECTION + ".")
+    print ("Source Connection = " + SOURCE_CONNECTION)
+    print ("Target update details: Target DB = " + TARGET_DB + " Target Host = " + TARGET_HOST + "Target HTTP = " + TARGET_HTTP)
     
 
   
