@@ -1,7 +1,7 @@
 # Immuta_Connection_Conversion
-Utility to convert Immuta data source connections under specific circumstances.
+Utilities to convert Immuta data source connections under specific circumstances.
 
-## Description
+## connection_conversion.py
 This is a python script designed to swap Immuta databricks connections from Workspace A to Workspace N.  It is meant to be run via Databricks for ease of use in the customer environment but could be ported as needed.  The script functionality is driven by a .csv file that contains a source to target mapping tailored to your environment.
 
 ## Install
@@ -24,3 +24,7 @@ The script will provide a mapping of schema projects and their connections with 
 1.) Download the latest .py file
 2.) Update to suit your environment, note the directory where you will drop the .csv file
 3.) Execute the script
+
+## get_instance_connections.py
+
+Returns a distinct list of all data source connections for an Immuta.
