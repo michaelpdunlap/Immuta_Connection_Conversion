@@ -11,3 +11,16 @@ This is a python script designed to swap Immuta databricks connections from Work
 4.) Populate the CSV template as needed to map your connection conversion.  
 5.) Update the Immuta specific variables in the script.  
 6.) Unleash hell.  Script actions are printed to the command line.  You can redirect that according to your requirement.  
+
+## ProjectSourceExtractor.py
+
+This script will extract schema project and data source connections. It will return a dataframe that you can export to your file system.
+
+It currently relies upon entering a search string to narrow down the results returned. It's defaulted to 443, the Databricks port.
+
+The script will provide a mapping of schema projects and their connections with the subordinate data source connections.
+
+### Instruction
+1.) Download the latest .py file
+2.) Update to suit your environment, note the directory where you will drop the .csv file
+3.) Execute the script
