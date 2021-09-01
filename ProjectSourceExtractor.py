@@ -45,6 +45,8 @@ response = requests.post(
 
 # get the auth token out of the json response
 authResponse = response.json()
+# adding this to troubleshoot auth errors
+print(authResponse)
 authToken = authResponse["token"]
 # print(authToken)
 
