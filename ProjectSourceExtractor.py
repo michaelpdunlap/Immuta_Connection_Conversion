@@ -157,5 +157,10 @@ print(str(MatchCnt) + " datasources match their project connection.")
 print(str(DontMatchCnt) + " datasources do not match their project connection.")
 
 # print dataframe to console or export to your file server
-# print(dataSourceSummary)
-dataSourceSummary.to_csv("~/Documents/data_connection_export.csv", index=False)
+print(dataSourceSummary)
+
+# file export options
+# export to local
+# dataSourceSummary.to_csv("~/Documents/data_connection_export.csv", index=False)
+# export to DBFS - must be a non Immuta cluster due to write permission constraints
+# dataSourceSummary.to_csv("/dbfs/<your favorite directory>/dataSourceSummary.csv", index=False)
