@@ -53,7 +53,7 @@ authToken = authResponse["token"]
 # now let's try to get all connections for a project
   
 projectResponse = requests.get(
-  IMMUTA_URL + '/project',
+  IMMUTA_URL + '/project?size=1000',
   headers={'Authorization': authToken }  
 )
   
