@@ -103,7 +103,7 @@ for i in projectIDs:
       projectConnection = projectConnection.rstrip(projectConnection[-1])
       
       projectDataSources = requests.get(
-        IMMUTA_URL + "/project/" + str(i['id']) + "/dataSources",
+        IMMUTA_URL + "/project/" + str(i['id']) + "/dataSources?size=1000",
         headers={'Authorization': authToken }
       )
       
