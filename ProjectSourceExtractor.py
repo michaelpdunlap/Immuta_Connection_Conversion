@@ -136,8 +136,54 @@ for i in projectIDs:
         dataSourceConnectionList.append(dataSourceConnection)
         matchList.append(matchValue)
 
-# build and print final data frame
+    # trap any schema projects that don't match the search string
+    else:
+      print ("Project ID " + str(i['id']) + " may be a schema project, but doesn't match search string.")
+      # generate count of schema projects
+      UnknownProjectCnt = UnknownProjectCnt + 1
+      # for each source type schema project, get the connections for the underlying data sources
+      # call the get project data sources end point
+      
+      projectName = i['name']
+      projectConnection = i['description']
+      # remove the extra bits
+      # projectConnection = projectConnection.split("from ",1)[1]
+      # projectConnection = projectConnection.rstrip(projectConnection[-1])
+      
+      projectDataSources = requests.get(
+        IMMUTA_URL + "/project/" + str(i['id']) + "/dataSources",
+        headers={'Authorization': authToken }
+      )
+      
+      dataSources2 = projectDataSources.json()
+      dataSourceIDs2 = dataSources['dataSources']
+      # get the info for each data source, and append relevant project info
+      
+      for x in dataSourceIDs2:
+        # generate count of data sources
+        DataSourceCnt = DataSourceCnt + 1
+        # from here, need to validate strongly due to inavailability of resources
+        dataSourceID = x['dataSourceId']
+        dataSourceName = x['dataSourceName']
+        dataSourceConnection = x['connectionString']
+        # ok, now let's tally if they match
+        if projectConnection == dataSourceConnection:
+            MatchCnt = MatchCnt + 1
+            matchValue = "Y"
+        else:
+            DontMatchCnt = DontMatchCnt + 1
+            matchValue = "N"
+            
+        # at this point, start appending to lists
+        projectNameList.append(projectName)
+        projectConnectionList.append(projectConnection)
+        dataSourceIDList.append(dataSourceID)
+        dataSourceNameList.append(dataSourceName)
+        dataSourceConnectionList.append(dataSourceConnection)
+        matchList.append(matchValue)
 
+
+# build and print final data frame
 sourceDictionary = {"ProjectName":projectNameList, "ProjectConnection":projectConnectionList, 
                    "DataSourceID":dataSourceIDList, "DataSourceName":dataSourceNameList, 
                     "DataSourceConnection":dataSourceConnectionList, "Matches":matchList}
@@ -149,6 +195,8 @@ dataSourceSummary = pandas.DataFrame(sourceDictionary)
 # print summary metrics
 
 print("There are " + str(SchemaProjectCnt) + " DBx schema project connections.")
+
+print("There are " + str(UnknownProjectCnt) + " possible schema project connections.")
  
 print("There are " + str(DataSourceCnt) + " DBx data source connections.")
 
