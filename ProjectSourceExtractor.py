@@ -78,6 +78,7 @@ projectIDs = projects['hits']
 # let's establish some base data metrics
 
 SchemaProjectCnt = 0
+UnknownProjectCnt = 0
 DataSourceCnt = 0
 MatchCnt = 0
 DontMatchCnt = 0
