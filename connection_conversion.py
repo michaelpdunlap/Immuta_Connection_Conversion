@@ -20,11 +20,17 @@ import requests
 #Import Pandas
 import pandas
 
+#import time
+import time
+import datetime
+
 # Immuta Instance variables
 # Set the hostname (and port if not 443) for the Immuta instance
 IMMUTA_URL= "<your immuta here>"
 # This is your user API key from Immuta
 API_KEY= "<your immuta API here"
+# sleep setting in seconds
+SNOOZE = 10
 
 
 # File location and type for forward conversion
@@ -131,6 +137,8 @@ for row in pandas_df.itertuples():
   
   for i in dataSourceFetchIDs:
     dataSourceID = i['id']
+    # record job timestamp
+    jobtime = datetime.datetime.now()
     # now let's make another call to update the datasource
     updateDataSource = requests.put(
       IMMUTA_URL + '/databricks/bulk',
@@ -155,6 +163,8 @@ for row in pandas_df.itertuples():
     print ("Achieved status " + str(updateDataSource.status_code) + " updating data source ID " + str(i['id']) + " from " + SOURCE_CONNECTION + " to " + TARGET_CONNECTION + ".")
     print ("Source Connection = " + SOURCE_CONNECTION)
     print ("Target update details: Target DB = " + TARGET_DB + " Target Host = " + TARGET_HOST + "Target HTTP = " + TARGET_HTTP)
+    # this is the throttle for data source updates
+    time.sleep(SNOOZE)
     
 
   
